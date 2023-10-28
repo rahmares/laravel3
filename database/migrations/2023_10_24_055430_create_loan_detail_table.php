@@ -14,8 +14,13 @@ class CreateLoanDetailTable extends Migration
     public function up()
     {
         Schema::create('loan_detail', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('loan_id');
+            $table->unsignedBigInteger('book_id');
+            $table->boolean('is_return');
             $table->timestamps();
+            $table->foreign('loan_id')->references('id')->on('loans');
+            $table->foreign('book_id')->references('id')->on('books');
         });
     }
 

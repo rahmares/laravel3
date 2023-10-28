@@ -14,8 +14,10 @@ class CreateReturnsTable extends Migration
     public function up()
     {
         Schema::create('returns', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->bigInteger('loan_detail_id');
+            $table->boolean('charge');
+            $table->integer('amount');
         });
     }
 
